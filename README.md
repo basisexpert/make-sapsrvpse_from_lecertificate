@@ -1,8 +1,8 @@
 # Generate SAP Server PSE from Let's Encrypt certificate
 
-## Using `lecert2sappse.mk`
+## Using lecert2sappse.mk
 
-The make-file `lecert2sappse.mk` should be started from `\<sapsid\>adm` user.
+The make-file `lecert2sappse.mk` should be started from `<sapsid>adm` user.
 
 To generate PSE you need pass two parameters: `LE_CERTIFICATE` and `SECUDIR`.
 
@@ -16,11 +16,11 @@ The sample of using `lecert2sappse.mk` to generate PSE from Lets' Encrypt certif
 make -f lec2sappse.mk SECUDIR=/usr/sap/W91/W91/sec LE_CERTIFICATE=example.com
 ```
 
-## Using `lecert2sapinstancepse.sh`
+## Using lecert2sapinstancepse.sh
 
 The script `lecert2sapinstancepse.sh` is bash-wrapper for `lecert2sappse.mk`.
 
-The script can be started both as from `\<sapsid\>adm` user and any user permitted sudo into `\<sapsid\>adm`.
+The script can be started both as from `<sapsid>adm` user and any user permitted sudo into `<sapsid>adm`.
 
 The sample of using `lecert2sapinstancepse.sh` to generate PSE from Lets' Encrypt certificate:
 
