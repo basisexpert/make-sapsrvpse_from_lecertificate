@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # MIT License
 #
-# Copyright (c) 2023 Mikhail Prusiv, mprusov@basisexpert.tech
+# Copyright (c) 2023 Mikhail Prusov, mprusov@basisexpert.tech
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# LE_CERTIFICATE
+# RENEWED_LINEAGE
 # SAPSYSTEMNAME
 # INSTANCE_NAME
 # PSENAME
@@ -35,7 +35,7 @@ SECUDIR="/usr/sap/$SAPSYSTEMNAME/$INSTANCE_NAME/sec"
 SIDADM_USER="${SAPSYSTEMNAME,,}adm"
 
 [ "$USER" == "$SIDADM_USER" ] && SUDO_CMD="eval" || SUDO_CMD="sudo -i -u $SIDADM_USER sh -c"
-$SUDO_CMD "make -f $(pwd)/lec2sappse.mk LE_CERTIFICATE=$LE_CERTIFICATE SECUDIR=$SECUDIR PSENAME=${PSENAME:-SAPSSLS}"
+$SUDO_CMD "make -f $(realpath $(dirname -- $0))/lecert2sappse.mk RENEWED_LINEAGE=$RENEWED_LINEAGE SECUDIR=$SECUDIR PSENAME=${PSENAME:-SAPSSLS}"
 
 if [ ! -z "$KILL_HUP$" ]; then
     PID=$(pgrep -u $SIDADM_USER $KILL_HUP)
