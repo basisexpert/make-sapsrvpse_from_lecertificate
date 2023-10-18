@@ -36,6 +36,7 @@ SIDADM_USER="${SAPSYSTEMNAME,,}adm"
 
 [ "$USER" == "$SIDADM_USER" ] && SUDO_CMD="eval" || SUDO_CMD="sudo -i -u $SIDADM_USER sh -c"
 $SUDO_CMD "make -f $(realpath $(dirname -- $0))/lecert2sappse.mk RENEWED_LINEAGE=$RENEWED_LINEAGE SECUDIR=$SECUDIR PSENAME=${PSENAME:-SAPSSLS}"
+RC=$?; [ "$RC" ] && exit $RC 
 
 if [ ! -z "$KILL_HUP$" ]; then
     PID=$(pgrep -u $SIDADM_USER $KILL_HUP)
