@@ -36,9 +36,9 @@ SIDADM_USER="${SAPSYSTEMNAME,,}adm"
 
 [ "$USER" == "$SIDADM_USER" ] && SUDO_CMD="eval" || SUDO_CMD="sudo -i -u $SIDADM_USER sh -c"
 $SUDO_CMD "make -f $(realpath $(dirname -- $0))/lecert2sappse.mk RENEWED_LINEAGE=$RENEWED_LINEAGE SECUDIR=$SECUDIR PSENAME=${PSENAME:-SAPSSLS}"
-RC=$?; [ "$RC" != "0" ] && exit $RC
+RC=$?; [ $RC ] || exit $RC
 
-if [ ! -z "$KILL_HUP$" ]; then
+if [ ! -z "$KILL_HUP" ]; then
     PID=$(pgrep -u $SIDADM_USER $KILL_HUP)
-    [ "$PID" != "" ] && (kill -HUP $PID && echo Signal -HUP sended to process with prefix $KILL_HUP) || echo "Found no process with prefix $KILL_HUP..."
+    [ ! -z "$PID" ] && (kill -HUP $PID && echo Signal -HUP sended to process with prefix $KILL_HUP) || echo "Found no process with prefix $KILL_HUP..."
 fi
